@@ -11,16 +11,16 @@
     <script>
       function createPlayer() {
         const Player = Kinescope.IframePlayer;
-        return Player.create('player', {
-          url: 'https://kinescope.dev/hAEy7QVu9LF7bc7yKPd7ih',
+        return Player.create("player", {
+          url: "https://kinescope.dev/hAEy7QVu9LF7bc7yKPd7ih",
 
-          size: { width: '50%', height: 400 },
+          size: { width: "50%", height: 400 },
 
           behavior: {
-              autoPause: autoPause,
-              preload: preload, 
-              playsInline: playsInline,
-              localStorage: true,
+            autoPause: true,
+            preload: true,
+            playsInline: true,
+            localStorage: true,
           },
 
           settings: {
@@ -32,7 +32,7 @@
             // },
           },
         }).then((player) => {
-          console.log('player initialized');
+          console.log("player initialized");
 
           // player.on(Player.PlayerEvent.FullscreenChange, ({ data }) => {
           //   if (!data.isFullscreen) return;
@@ -53,13 +53,13 @@
       }
 
       function onKinescopeIframeAPIReady(Player) {
-        console.log('iframe api ready', Player);
+        console.log("iframe api ready", Player);
         createPlayer();
       }
     </script>
     <script
       async
-      src="https://player.kinescope.dev/v2.157.3/iframe.player.js"
+      src="https://player.kinescope.dev/v2.157.6/iframe.player.js"
     ></script>
   </head>
   <body>
