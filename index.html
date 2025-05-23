@@ -12,14 +12,14 @@
       function createPlayer() {
         const Player = Kinescope.IframePlayer;
         return Player.create('player', {
-          url: 'https://kinescope.dev/g1U4gLLwAT4r4ZfC6Rt3GY',
+          url: 'https://kinescope.dev/hAEy7QVu9LF7bc7yKPd7ih',
 
           size: { width: '50%', height: 400 },
 
           behaviour: {
-            // preload: true,
-            // autoPlay: true,
-            // crossOrigin: 'use-credentials',
+               preload: preload,
+               autoPlay: true,
+               playsInLine: playsInLine,
           },
 
           settings: {
