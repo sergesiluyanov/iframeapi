@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -10,24 +9,17 @@
       type="image/x-icon"
     />
     <script>
-      // Параметры поведения
-      const autoPause = true;
-      const preload = true;
-      const playsInline = true;
-      const localStorage = true;
-
       function createPlayer() {
         const Player = Kinescope.IframePlayer;
-        return Player.create("player", {
-          url: "https://kinescope.io/c91Q6bc8kAzNvmsknHSMYS",
+        return Player.create('player', {
+          url: 'https://kinescope.io/200633204',
 
-          size: { width: "50%", height: 400 },
+          size: { width: '50%', height: 400 },
 
-          behavior: {
-  autoPause: autoPause,
-  preload: preload,
-  playsInline: playsInline,
-  localStorage: localStorage,
+          behaviour: {
+            // preload: true,
+            // autoPlay: true,
+            // crossOrigin: 'use-credentials',
           },
 
           settings: {
@@ -39,18 +31,34 @@
             // },
           },
         }).then((player) => {
-          console.log("player initialized");
+          console.log('player initialized');
+
+          // player.on(Player.PlayerEvent.FullscreenChange, ({ data }) => {
+          //   if (!data.isFullscreen) return;
+
+          //   setTimeout(async () => {
+          //     await player.destroy();
+
+          //     if (!document.getElementById('player')) {
+          //       const container = document.createElement('div');
+          //       container.id = 'player';
+          //       document.body.appendChild(container);
+          //     }
+
+          //     await createPlayer();
+          //   }, 5000);
+          // });
         });
       }
 
       function onKinescopeIframeAPIReady(Player) {
-        console.log("iframe api ready", Player);
+        console.log('iframe api ready', Player);
         createPlayer();
       }
     </script>
     <script
       async
-      src="https://player.kinescope.dev/v2.158.0/iframe.player.js"
+      src="https://player.kinescope.dev/latest/iframe.player.js"
     ></script>
   </head>
   <body>
