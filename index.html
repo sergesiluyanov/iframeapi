@@ -22,6 +22,8 @@
       // Global variable to store the Player API when it's ready
       let KinescopePlayerAPI = null;
       let playerInitialized = false;
+      let retryCount = 0;
+      const maxRetries = 3;
 
       function createPlayer() {
         // Check if container exists
@@ -42,7 +44,13 @@
           return;
         }
 
-        console.log('Creating player...');
+        if (retryCount >= maxRetries) {
+          console.error('Max retries reached, stopping attempts');
+          return;
+        }
+
+        retryCount++;
+        console.log('Creating player... (attempt ' + retryCount + ')');
         
         return KinescopePlayerAPI.create('player', {
           url: 'https://kinescope.io/200633204',
@@ -64,19 +72,19 @@
             // },
           },
 
-          // Yandex Ads integration - standard approach
-          ads: [{
-            type: 'yandex',
-            config: {
-              partnerId: 291193,
-              category: 0,
-            },
-            trigger: {
-              timePoints: [0]
-            }
-          }],
+          // Temporarily removed Yandex Ads to test basic functionality
+          // ads: [{
+          //   type: 'yandex',
+          //   config: {
+          //     partnerId: 291193,
+          //     category: 0,
+          //   },
+          //   trigger: {
+          //     timePoints: [0]
+          //   }
+          // }],
         }).then((player) => {
-          console.log('player initialized');
+          console.log('player initialized successfully');
           playerInitialized = true;
 
           // Listen for ad events
@@ -109,6 +117,11 @@
           // });
         }).catch((error) => {
           console.error('Error creating player:', error);
+          // Don't retry on 403 errors as they indicate a permanent issue
+          if (error.data && error.data.message && error.data.message.includes('403')) {
+            console.error('403 error detected - this might be due to invalid video URL or access restrictions');
+            playerInitialized = true; // Stop retrying
+          }
         });
       }
 
@@ -123,7 +136,7 @@
       // Function to ensure everything is ready
       function initializePlayer() {
         // Check if both container and API are ready
-        if (document.getElementById('player') && KinescopePlayerAPI && !playerInitialized) {
+        if (document.getElementById('player') && KinescopePlayerAPI && !playerInitialized && retryCount < maxRetries) {
           createPlayer();
         }
       }
@@ -156,8 +169,14 @@
         document.head.appendChild(script);
       }
 
-      // Fallback: try to initialize periodically
-      setInterval(initializePlayer, 1000);
+      // Fallback: try to initialize periodically (but with limits)
+      const retryInterval = setInterval(() => {
+        if (playerInitialized || retryCount >= maxRetries) {
+          clearInterval(retryInterval);
+          return;
+        }
+        initializePlayer();
+      }, 2000);
     </script>
   </body>
 </html>
