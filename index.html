@@ -53,7 +53,7 @@
         console.log('Creating player... (attempt ' + retryCount + ')');
         
         return KinescopePlayerAPI.create('player', {
-          url: 'https://kinescope.io/3qcJzmnRMfZohdPJw9zcy2',
+          url: 'https://kinescope.dev/i3E2w1x8VUfmhppeSZfree',
 
           size: { width: '50%', height: 400 },
 
@@ -72,18 +72,17 @@
             // },
           },
 
-          // Temporarily removed Yandex Ads to test basic functionality
-          // The timeout error suggests the ads configuration might be causing issues
-          // ads: [{
-          //   type: 'yandex',
-          //   config: {
-          //     partnerId: 291193,
-          //     category: 0,
-          //   },
-          //   trigger: {
-          //     timePoints: [0]
-          //   }
-          // }],
+          // Yandex Ads integration
+          ads: [{
+            type: 'yandex',
+            config: {
+              partnerId: 291193,
+              category: 0,
+            },
+            trigger: {
+              timePoints: [0]
+            }
+          }],
         }, {
           // Add timeout configuration
           timeout: 15000 // 15 seconds timeout
@@ -156,10 +155,10 @@
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
           console.log('DOM loaded');
-          // Load the player script
+          // Load the player script with a stable version
           const script = document.createElement('script');
           script.async = true;
-          script.src = 'https://player.kinescope.dev/latest/iframe.player.js';
+          script.src = 'https://player.kinescope.dev/v2.158.0/iframe.player.js';
           script.onload = function() {
             console.log('Kinescope script loaded');
             // Try to initialize after a short delay
@@ -172,22 +171,4 @@
         console.log('DOM already loaded');
         const script = document.createElement('script');
         script.async = true;
-        script.src = 'https://player.kinescope.dev/latest/iframe.player.js';
-        script.onload = function() {
-          console.log('Kinescope script loaded');
-          setTimeout(initializePlayer, 100);
-        };
-        document.head.appendChild(script);
-      }
-
-      // Fallback: try to initialize periodically (but with limits)
-      const retryInterval = setInterval(() => {
-        if (playerInitialized || retryCount >= maxRetries) {
-          clearInterval(retryInterval);
-          return;
-        }
-        initializePlayer();
-      }, 2000);
-    </script>
-  </body>
-</html>
+        script.src = 'h
