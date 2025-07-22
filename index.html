@@ -72,17 +72,21 @@
             // },
           },
 
-          // Yandex Ads integration
-          ads: [{
-            type: 'yandex',
-            config: {
-              partnerId: 291193,
-              category: 0,
-            },
-            trigger: {
-              timePoints: [0]
-            }
-          }],
+          // Temporarily removed Yandex Ads to test basic functionality
+          // The timeout error suggests the ads configuration might be causing issues
+          // ads: [{
+          //   type: 'yandex',
+          //   config: {
+          //     partnerId: 291193,
+          //     category: 0,
+          //   },
+          //   trigger: {
+          //     timePoints: [0]
+          //   }
+          // }],
+        }, {
+          // Add timeout configuration
+          timeout: 15000 // 15 seconds timeout
         }).then((player) => {
           console.log('player initialized successfully');
           playerInitialized = true;
@@ -117,6 +121,13 @@
           // });
         }).catch((error) => {
           console.error('Error creating player:', error);
+          
+          // Check for timeout errors
+          if (error.message && error.message.includes('timeout')) {
+            console.error('Timeout error detected - this might be due to network issues or invalid configuration');
+            playerInitialized = true; // Stop retrying on timeout
+          }
+          
           // Don't retry on 403 errors as they indicate a permanent issue
           if (error.data && error.data.message && error.data.message.includes('403')) {
             console.error('403 error detected - this might be due to invalid video URL or access restrictions');
