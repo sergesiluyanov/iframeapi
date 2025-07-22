@@ -90,20 +90,20 @@
           console.log('player initialized successfully');
           playerInitialized = true;
 
-          // Listen for ad events
-          player.on(KinescopePlayerAPI.PlayerEvent.AdStart, (event) => {
+          // Listen for ad events using string constants
+          player.on('adStart', (event) => {
             console.log('Ad started:', event);
           });
 
-          player.on(KinescopePlayerAPI.PlayerEvent.AdEnd, (event) => {
+          player.on('adEnd', (event) => {
             console.log('Ad ended:', event);
           });
 
-          player.on(KinescopePlayerAPI.PlayerEvent.AdError, (event) => {
+          player.on('adError', (event) => {
             console.error('Ad error:', event);
           });
 
-          // player.on(KinescopePlayerAPI.PlayerEvent.FullscreenChange, ({ data }) => {
+          // player.on('fullscreenChange', ({ data }) => {
           //   if (!data.isFullscreen) return;
 
           //   setTimeout(async () => {
