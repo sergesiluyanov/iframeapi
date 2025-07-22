@@ -9,6 +9,15 @@
       href="https://static.tildacdn.com/tild6535-3931-4534-a462-643438616464/favicon.ico"
       type="image/x-icon"
     />
+    <style>
+      iframe[id^='sb__open-sandbox'] {
+        top: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="player"></div>
+
     <script>
       function createPlayer() {
         const Player = Kinescope.IframePlayer;
@@ -32,17 +41,16 @@
             // },
           },
 
-          // Yandex Ads integration
-          playlist: [{
-            ad: [{
-              yaOptions: {
-                adConfig: {
-                  partnerId: 291193,
-                  category: 0,
-                },
-              },
-              trigger: { timePoints: [0] },
-            }],
+          // Yandex Ads integration - standard approach
+          ads: [{
+            type: 'yandex',
+            config: {
+              partnerId: 291193,
+              category: 0,
+            },
+            trigger: {
+              timePoints: [0]
+            }
           }],
         }).then((player) => {
           console.log('player initialized');
@@ -82,13 +90,15 @@
         console.log('iframe api ready', Player);
         createPlayer();
       }
+
+      // Ensure DOM is loaded before loading the player script
+      document.addEventListener('DOMContentLoaded', function() {
+        // Load the player script after DOM is ready
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://player.kinescope.dev/latest/iframe.player.js';
+        document.head.appendChild(script);
+      });
     </script>
-    <script
-      async
-      src="https://player.kinescope.dev/latest/iframe.player.js"
-    ></script>
-  </head>
-  <body>
-    <div id="player"></div>
   </body>
 </html>
