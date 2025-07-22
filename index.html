@@ -53,7 +53,7 @@
         console.log('Creating player... (attempt ' + retryCount + ')');
         
         return KinescopePlayerAPI.create('player', {
-          url: 'https://kinescope.io/200633204',
+          url: 'https://kinescope.io/3qcJzmnRMfZohdPJw9zcy2',
 
           size: { width: '50%', height: 400 },
 
@@ -72,17 +72,17 @@
             // },
           },
 
-          // Temporarily removed Yandex Ads to test basic functionality
-          // ads: [{
-          //   type: 'yandex',
-          //   config: {
-          //     partnerId: 291193,
-          //     category: 0,
-          //   },
-          //   trigger: {
-          //     timePoints: [0]
-          //   }
-          // }],
+          // Yandex Ads integration
+          ads: [{
+            type: 'yandex',
+            config: {
+              partnerId: 291193,
+              category: 0,
+            },
+            trigger: {
+              timePoints: [0]
+            }
+          }],
         }).then((player) => {
           console.log('player initialized successfully');
           playerInitialized = true;
