@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -30,8 +31,34 @@
             //   interval: 2000,
             // },
           },
+
+          // Yandex Ads integration
+          playlist: [{
+            ad: [{
+              yaOptions: {
+                adConfig: {
+                  partnerId: 291193,
+                  category: 0,
+                },
+              },
+              trigger: { timePoints: [0] },
+            }],
+          }],
         }).then((player) => {
           console.log('player initialized');
+
+          // Listen for ad events
+          player.on(Player.PlayerEvent.AdStart, (event) => {
+            console.log('Ad started:', event);
+          });
+
+          player.on(Player.PlayerEvent.AdEnd, (event) => {
+            console.log('Ad ended:', event);
+          });
+
+          player.on(Player.PlayerEvent.AdError, (event) => {
+            console.error('Ad error:', event);
+          });
 
           // player.on(Player.PlayerEvent.FullscreenChange, ({ data }) => {
           //   if (!data.isFullscreen) return;
