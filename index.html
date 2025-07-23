@@ -70,7 +70,14 @@
         retryCount++;
         console.log('Creating player... (attempt ' + retryCount + ')');
         
-        return KinescopePlayerAPI.create('player', {
+        // Check if Yandex SDK is available
+        if (typeof ya !== 'undefined' && ya.videoAd) {
+          console.log('Yandex Video Ads SDK is available');
+        } else {
+          console.warn('Yandex Video Ads SDK is not available');
+        }
+        
+        const playerConfig = {
           url: 'https://kinescope.dev/i3E2w1x8VUfmhppeSZfree',
 
           size: { width: '50%', height: 400 },
@@ -102,14 +109,18 @@
               trigger: { timePoints: [0] },
             }],
           }],
-        }, {
+        };
+        
+        console.log('Player config with ads:', playerConfig);
+        
+        return KinescopePlayerAPI.create('player', playerConfig, {
           // Add timeout configuration
           timeout: 15000 // 15 seconds timeout
         }).then((player) => {
           console.log('player initialized successfully');
           playerInitialized = true;
 
-          // Listen for ad events using string constants
+          // Listen for all possible ad events
           player.on('adStart', (event) => {
             console.log('Ad started:', event);
           });
@@ -120,6 +131,35 @@
 
           player.on('adError', (event) => {
             console.error('Ad error:', event);
+          });
+
+          player.on('adLoad', (event) => {
+            console.log('Ad loaded:', event);
+          });
+
+          player.on('adSkip', (event) => {
+            console.log('Ad skipped:', event);
+          });
+
+          player.on('adClick', (event) => {
+            console.log('Ad clicked:', event);
+          });
+
+          // Listen for general player events
+          player.on('ready', (event) => {
+            console.log('Player ready:', event);
+          });
+
+          player.on('play', (event) => {
+            console.log('Video started playing:', event);
+          });
+
+          player.on('pause', (event) => {
+            console.log('Video paused:', event);
+          });
+
+          player.on('ended', (event) => {
+            console.log('Video ended:', event);
           });
 
           // player.on('fullscreenChange', ({ data }) => {
