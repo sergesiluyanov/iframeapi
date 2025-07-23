@@ -14,6 +14,24 @@
         top: 50%;
       }
     </style>
+    
+    <!-- Yandex Video Ads SDK -->
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="https://yandex.ru/ads/system/adsdk.js"
+    ></script>
+    
+    <!-- Load Yandex AdLoader module -->
+    <script>
+      // Load the AdLoader module
+      ya.videoAd.loadModule('AdLoader').then(function(module) {
+        console.log('Yandex AdLoader module loaded successfully');
+        window.YandexAdLoader = module;
+      }).catch(function(error) {
+        console.error('Failed to load Yandex AdLoader module:', error);
+      });
+    </script>
   </head>
   <body>
     <div id="player"></div>
@@ -72,12 +90,15 @@
             // },
           },
 
-          // Yandex Ads integration
+          // Yandex Ads integration with proper SDK
           ads: [{
             type: 'yandex',
             config: {
               partnerId: 291193,
               category: 0,
+              // Additional parameters for Yandex SDK
+              format: 'video',
+              position: 'preroll'
             },
             trigger: {
               timePoints: [0]
