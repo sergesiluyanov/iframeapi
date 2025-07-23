@@ -91,4 +91,121 @@
           },
 
           // Yandex Ads integration according to developer specification
-          playlis
+          playlist: [{
+            ad: [{
+              yaOptions: {
+                adConfig: {
+                  partnerId: 291193,
+                  category: 0,
+                },
+              },
+              trigger: { timePoints: [0] },
+            }],
+          }],
+        }, {
+          // Add timeout configuration
+          timeout: 15000 // 15 seconds timeout
+        }).then((player) => {
+          console.log('player initialized successfully');
+          playerInitialized = true;
+
+          // Listen for ad events using string constants
+          player.on('adStart', (event) => {
+            console.log('Ad started:', event);
+          });
+
+          player.on('adEnd', (event) => {
+            console.log('Ad ended:', event);
+          });
+
+          player.on('adError', (event) => {
+            console.error('Ad error:', event);
+          });
+
+          // player.on('fullscreenChange', ({ data }) => {
+          //   if (!data.isFullscreen) return;
+
+          //   setTimeout(async () => {
+          //     await player.destroy();
+
+          //     if (!document.getElementById('player')) {
+          //       const container = document.createElement('div');
+          //       container.id = 'player';
+          //       document.body.appendChild(container);
+          //     }
+
+          //     await createPlayer();
+          //   }, 5000);
+          // });
+        }).catch((error) => {
+          console.error('Error creating player:', error);
+          
+          // Check for timeout errors
+          if (error.message && error.message.includes('timeout')) {
+            console.error('Timeout error detected - this might be due to network issues or invalid configuration');
+            playerInitialized = true; // Stop retrying on timeout
+          }
+          
+          // Don't retry on 403 errors as they indicate a permanent issue
+          if (error.data && error.data.message && error.data.message.includes('403')) {
+            console.error('403 error detected - this might be due to invalid video URL or access restrictions');
+            playerInitialized = true; // Stop retrying
+          }
+        });
+      }
+
+      function onKinescopeIframeAPIReady(Player) {
+        console.log('iframe api ready', Player);
+        KinescopePlayerAPI = Player;
+        
+        // Try to create player immediately
+        createPlayer();
+      }
+
+      // Function to ensure everything is ready
+      function initializePlayer() {
+        // Check if both container and API are ready
+        if (document.getElementById('player') && KinescopePlayerAPI && !playerInitialized && retryCount < maxRetries) {
+          createPlayer();
+        }
+      }
+
+      // Wait for DOM to be fully loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          console.log('DOM loaded');
+          // Load the player script with a stable version and cache-busting parameter
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://player.kinescope.dev/v2.158.0/iframe.player.js?v=' + Date.now();
+          script.onload = function() {
+            console.log('Kinescope script loaded');
+            // Try to initialize after a short delay
+            setTimeout(initializePlayer, 100);
+          };
+          document.head.appendChild(script);
+        });
+      } else {
+        // DOM is already loaded
+        console.log('DOM already loaded');
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://player.kinescope.dev/v2.158.0/iframe.player.js?v=' + Date.now();
+        script.onload = function() {
+          console.log('Kinescope script loaded');
+          setTimeout(initializePlayer, 100);
+        };
+        document.head.appendChild(script);
+      }
+
+      // Fallback: try to initialize periodically (but with limits)
+      const retryInterval = setInterval(() => {
+        if (playerInitialized || retryCount >= maxRetries) {
+          clearInterval(retryInterval);
+          return;
+        }
+        initializePlayer();
+      }, 2000);
+    </script>
+  </body>
+</html>
