@@ -86,7 +86,11 @@
             // preload: true,
             // autoPlay: true,
             // crossOrigin: 'use-credentials',
-            localStorage: true
+            localStorage: {
+  quality: 'global',    // запоминать качество глобально
+  time: true,          // запоминать время
+  textTrack: 'global'  // запоминать язык субтитров глобально
+},
           },
 
           settings: {
@@ -231,7 +235,7 @@
         console.log('DOM already loaded');
         const script = document.createElement('script');
         script.async = true;
-        script.src = 'https://player.kinescope.dev/v2.158.2/iframe.player.js?v=' + Date.now();
+        script.src = 'https://player.kinescope.dev/v2.159.0/iframe.player.js?v=' + Date.now();
         script.onload = function() {
           console.log('Kinescope script loaded');
           setTimeout(initializePlayer, 100);
