@@ -82,11 +82,11 @@
 
           size: { width: '50%', height: 400 },
 
-          behaviour: {
+          behavior: {
             // preload: true,
             // autoPlay: true,
             // crossOrigin: 'use-credentials',
-            "localStorage" : true
+            localStorage: true
           },
 
           settings: {
@@ -215,10 +215,10 @@
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
           console.log('DOM loaded');
-          // Load the player script with a stable version and cache-busting parameter
+          // Load the player script with the latest version and cache-busting parameter
           const script = document.createElement('script');
           script.async = true;
-          script.src = 'https://player.kinescope.dev/v2.158.0/iframe.player.js?v=' + Date.now();
+          script.src = 'https://player.kinescope.dev/v2.159.0/iframe.player.js?v=' + Date.now();
           script.onload = function() {
             console.log('Kinescope script loaded');
             // Try to initialize after a short delay
@@ -231,7 +231,7 @@
         console.log('DOM already loaded');
         const script = document.createElement('script');
         script.async = true;
-        script.src = 'https://player.kinescope.dev/v2.158.0/iframe.player.js?v=' + Date.now();
+        script.src = 'https://player.kinescope.dev/v2.159.0/iframe.player.js?v=' + Date.now();
         script.onload = function() {
           console.log('Kinescope script loaded');
           setTimeout(initializePlayer, 100);
