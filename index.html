@@ -14,6 +14,24 @@
         top: 50%;
       }
     </style>
+    
+    <!-- Yandex Video Ads SDK -->
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="https://yandex.ru/ads/system/adsdk.js"
+    ></script>
+    
+    <!-- Load Yandex AdLoader module -->
+    <script>
+      // Load the AdLoader module
+      ya.videoAd.loadModule('AdLoader').then(function(module) {
+        console.log('Yandex AdLoader module loaded successfully');
+        window.YandexAdLoader = module;
+      }).catch(function(error) {
+        console.error('Failed to load Yandex AdLoader module:', error);
+      });
+    </script>
   </head>
   <body>
     <div id="player"></div>
@@ -52,6 +70,13 @@
         retryCount++;
         console.log('Creating player... (attempt ' + retryCount + ')');
         
+        // Check if Yandex SDK is available
+        if (typeof ya !== 'undefined' && ya.videoAd) {
+          console.log('Yandex Video Ads SDK is available');
+        } else {
+          console.warn('Yandex Video Ads SDK is not available');
+        }
+        
         const playerConfig = {
           url: 'https://kinescope.dev/pl/emrgzrMGX1KFkB81BXzT54',
 
@@ -62,8 +87,8 @@
             // autoPlay: true,
             // crossOrigin: 'use-credentials',
             localStorage: {
-              time: true          // запоминать время
-            },
+              time: true
+            }
           },
 
           settings: {
@@ -74,9 +99,22 @@
             //   interval: 2000,
             // },
           },
+
+          // Yandex Ads integration according to developer specification
+          playlist: [{
+            ad: [{
+              yaOptions: {
+                adConfig: {
+                  partnerId: 291193,
+                  category: 0,
+                },
+              },
+              trigger: { timePoints: [0] },
+            }],
+          }],
         };
         
-        console.log('Player config:', playerConfig);
+        console.log('Player config with ads:', playerConfig);
         
         return KinescopePlayerAPI.create('player', playerConfig, {
           // Add timeout configuration
@@ -84,6 +122,31 @@
         }).then((player) => {
           console.log('player initialized successfully');
           playerInitialized = true;
+
+          // Listen for all possible ad events
+          player.on('adStart', (event) => {
+            console.log('Ad started:', event);
+          });
+
+          player.on('adEnd', (event) => {
+            console.log('Ad ended:', event);
+          });
+
+          player.on('adError', (event) => {
+            console.error('Ad error:', event);
+          });
+
+          player.on('adLoad', (event) => {
+            console.log('Ad loaded:', event);
+          });
+
+          player.on('adSkip', (event) => {
+            console.log('Ad skipped:', event);
+          });
+
+          player.on('adClick', (event) => {
+            console.log('Ad clicked:', event);
+          });
 
           // Listen for general player events
           player.on('ready', (event) => {
