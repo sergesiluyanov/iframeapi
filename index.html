@@ -215,7 +215,7 @@
           // Load the player script with the latest version and cache-busting parameter
           const script = document.createElement('script');
           script.async = true;
-          script.src = 'https://player.kinescope.dev/latest/iframe.player.js?v=' + Date.now();
+          script.src = 'https://player.kinescope.dev/v2.163.2/iframe.player.js?v=' + Date.now();
           script.onload = function() {
             console.log('Kinescope script loaded');
             // Try to initialize after a short delay
