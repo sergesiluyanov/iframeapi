@@ -228,7 +228,7 @@
         console.log('DOM already loaded');
         const script = document.createElement('script');
         script.async = true;
-        script.src = 'https://player.kinescope.dev/2.163.2/iframe.player.js?v=' + Date.now();
+        script.src = 'https://player.kinescope.dev/v2.163.2/iframe.player.js?v=' + Date.now();
         script.onload = function() {
           console.log('Kinescope script loaded');
           setTimeout(initializePlayer, 100);
