@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Player</title>
+    <title>Player with Downloads</title>
     <link
       rel="shortcut icon"
       href="https://static.tildacdn.com/tild6535-3931-4534-a462-643438616464/favicon.ico"
@@ -83,7 +83,7 @@
           size: { width: '50%', height: 400 },
 
           behavior: {
-            annotation_text_enabled,
+            annotation_text_enabled: true,
             // preload: true,
             // autoPlay: true,
             // crossOrigin: 'use-credentials',
@@ -93,10 +93,10 @@
           },
 
           ui: {
-
             screenshotButton: true,
-  transcriptionButton: true,
+            transcriptionButton: true,
           },
+          
           settings: {
             testMode: true
           },
@@ -112,6 +112,45 @@
               },
               trigger: { timePoints: [0] },
             }],
+            
+            // Downloads configuration
+            downloads: {
+              list: [
+                {
+                  name: 'video',
+                  items: [
+                    {
+                      name: '360.mp4',
+                      url: 'https://kinescope.dev/3jWBmUACecDBuFYtyB42Jy/download/360.mp4',
+                      size: 12345678,
+                    },
+                    {
+                      name: '480.mp4',
+                      url: 'https://kinescope.dev/3jWBmUACecDBuFYtyB42Jy/download/480.mp4',
+                      size: 23456789,
+                    },
+                    {
+                      name: '720.mp4',
+                      url: 'https://kinescope.dev/3jWBmUACecDBuFYtyB42Jy/download/720.mp4',
+                      size: 34567890,
+                    },
+                  ],
+                },
+                {
+                  name: 'transcription',
+                  items: [
+                    {
+                      name: 'subtitles.srt',
+                      url: 'https://kinescope.dev/3jWBmUACecDBuFYtyB42Jy/download/subtitles.srt',
+                    },
+                    {
+                      name: 'subtitles.vtt',
+                      url: 'https://kinescope.dev/3jWBmUACecDBuFYtyB42Jy/download/subtitles.vtt',
+                    },
+                  ],
+                },
+              ],
+            },
           }],
         };
         
