@@ -1,211 +1,39 @@
-<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Player with Downloads</title>
+    <title>Player</title>
     <link
       rel="shortcut icon"
       href="https://static.tildacdn.com/tild6535-3931-4534-a462-643438616464/favicon.ico"
       type="image/x-icon"
     />
-    <style>
-      iframe[id^='sb__open-sandbox'] {
-        top: 50%;
-      }
-    </style>
-    
-    <!-- Yandex Video Ads SDK -->
-    <script
-      type="text/javascript"
-      charset="utf-8"
-      src="https://yandex.ru/ads/system/adsdk.js"
-    ></script>
-    
-    <!-- Load Yandex AdLoader module -->
     <script>
-      // Load the AdLoader module
-      ya.videoAd.loadModule('AdLoader').then(function(module) {
-        console.log('Yandex AdLoader module loaded successfully');
-        window.YandexAdLoader = module;
-      }).catch(function(error) {
-        console.error('Failed to load Yandex AdLoader module:', error);
-      });
-    </script>
-  </head>
-  <body>
-    <div id="player"></div>
-
-    <script>
-      // Global variable to store the Player API when it's ready
-      let KinescopePlayerAPI = null;
-      let playerInitialized = false;
-      let retryCount = 0;
-      const maxRetries = 3;
-
       function createPlayer() {
-        // Check if container exists
-        const container = document.getElementById('player');
-        if (!container) {
-          console.error('Player container not found');
-          return;
-        }
-
-        // Check if API is available test
-        if (!KinescopePlayerAPI) {
-          console.error('Kinescope Player API not available');
-          return;
-        }
-
-        if (playerInitialized) {
-          console.log('Player already initialized');
-          return;
-        }
-
-        if (retryCount >= maxRetries) {
-          console.error('Max retries reached, stopping attempts');
-          return;
-        }
-
-        retryCount++;
-        console.log('Creating player... (attempt ' + retryCount + ')');
-        
-        // Check if Yandex SDK is available
-        if (typeof ya !== 'undefined' && ya.videoAd) {
-          console.log('Yandex Video Ads SDK is available');
-        } else {
-          console.warn('Yandex Video Ads SDK is not available');
-        }
-        
-        const playerConfig = {
+        const Player = Kinescope.IframePlayer;
+        return Player.create('player', {
           url: 'https://kinescope.dev/embed/ikTNV5Pf6tA5BqmdeVUcUL',
 
           size: { width: '50%', height: 400 },
 
-          behavior: {
-            annotation_text_enabled: true,
+          behaviour: {
             // preload: true,
             // autoPlay: true,
             // crossOrigin: 'use-credentials',
-            localStorage: {
-              time: true
-            }
           },
 
-          ui: {
-            screenshotButton: true,
-            transcriptionButton: true,
-          },
-          
           settings: {
-            testMode: true
+            // driverSettings: {
+            //   hls: { playback: 'native' },
+            // },
+            // metrics: {
+            //   interval: 2000,
+            // },
           },
-
-          // Yandex Ads integration according to developer specification
-          playlist: [{
-            ad: [{
-              yaOptions: {
-                adConfig: {
-                  partnerId: 291193,
-                  category: 0,
-                },
-              },
-              trigger: { timePoints: [0] },
-            }],
-            
-            // Downloads configuration
-            downloads: {
-              list: [
-                {
-                  name: 'video',
-                  items: [
-                    {
-                      name: '360.mp4',
-                      url: 'https://kinescope.dev/3jWBmUACecDBuFYtyB42Jy/download/360.mp4',
-                      size: 12345678,
-                    },
-                    {
-                      name: '480.mp4',
-                      url: 'https://kinescope.dev/3jWBmUACecDBuFYtyB42Jy/download/480.mp4',
-                      size: 23456789,
-                    },
-                    {
-                      name: '720.mp4',
-                      url: 'https://kinescope.dev/3jWBmUACecDBuFYtyB42Jy/download/720.mp4',
-                      size: 34567890,
-                    },
-                  ],
-                },
-                {
-                  name: 'transcription',
-                  items: [
-                    {
-                      name: 'subtitles.srt',
-                      url: 'https://kinescope.dev/3jWBmUACecDBuFYtyB42Jy/download/subtitles.srt',
-                    },
-                    {
-                      name: 'subtitles.vtt',
-                      url: 'https://kinescope.dev/3jWBmUACecDBuFYtyB42Jy/download/subtitles.vtt',
-                    },
-                  ],
-                },
-              ],
-            },
-          }],
-        };
-        
-        console.log('Player config with ads:', playerConfig);
-        
-        return KinescopePlayerAPI.create('player', playerConfig, {
-          // Add timeout configuration
-          timeout: 15000 // 15 seconds timeout
         }).then((player) => {
-          console.log('player initialized successfully');
-          playerInitialized = true;
+          console.log('player initialized');
 
-          // Listen for all possible ad events
-          player.on('adStart', (event) => {
-            console.log('Ad started:', event);
-          });
-
-          player.on('adEnd', (event) => {
-            console.log('Ad ended:', event);
-          });
-
-          player.on('adError', (event) => {
-            console.error('Ad error:', event);
-          });
-
-          player.on('adLoad', (event) => {
-            console.log('Ad loaded:', event);
-          });
-
-          player.on('adSkip', (event) => {
-            console.log('Ad skipped:', event);
-          });
-
-          player.on('adClick', (event) => {
-            console.log('Ad clicked:', event);
-          });
-
-          // Listen for general player events
-          player.on('ready', (event) => {
-            console.log('Player ready:', event);
-          });
-
-          player.on('play', (event) => {
-            console.log('Video started playing:', event);
-          });
-
-          player.on('pause', (event) => {
-            console.log('Video paused:', event);
-          });
-
-          player.on('ended', (event) => {
-            console.log('Video ended:', event);
-          });
-
-          // player.on('fullscreenChange', ({ data }) => {
+          // player.on(Player.PlayerEvent.FullscreenChange, ({ data }) => {
           //   if (!data.isFullscreen) return;
 
           //   setTimeout(async () => {
@@ -220,75 +48,20 @@
           //     await createPlayer();
           //   }, 5000);
           // });
-        }).catch((error) => {
-          console.error('Error creating player:', error);
-          
-          // Check for timeout errors
-          if (error.message && error.message.includes('timeout')) {
-            console.error('Timeout error detected - this might be due to network issues or invalid configuration');
-            playerInitialized = true; // Stop retrying on timeout
-          }
-          
-          // Don't retry on 403 errors as they indicate a permanent issue
-          if (error.data && error.data.message && error.data.message.includes('403')) {
-            console.error('403 error detected - this might be due to invalid video URL or access restrictions');
-            playerInitialized = true; // Stop retrying
-          }
         });
       }
 
       function onKinescopeIframeAPIReady(Player) {
         console.log('iframe api ready', Player);
-        KinescopePlayerAPI = Player;
-        
-        // Try to create player immediately
         createPlayer();
       }
-
-      // Function to ensure everything is ready
-      function initializePlayer() {
-        // Check if both container and API are ready
-        if (document.getElementById('player') && KinescopePlayerAPI && !playerInitialized && retryCount < maxRetries) {
-          createPlayer();
-        }
-      }
-
-      // Wait for DOM to be fully loaded
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-          console.log('DOM loaded');
-          // Load the player script with the latest version and cache-busting parameter
-          const script = document.createElement('script');
-          script.async = true;
-          script.src = 'https://player.kinescope.dev/v2.168.2/iframe.player.js';
-          script.onload = function() {
-            console.log('Kinescope script loaded');
-            // Try to initialize after a short delay
-            setTimeout(initializePlayer, 100);
-          };
-          document.head.appendChild(script);
-        });
-      } else {
-        // DOM is already loaded
-        console.log('DOM already loaded');
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://player.kinescope.dev/v2.168.2/iframe.player.js';
-        script.onload = function() {
-          console.log('Kinescope script loaded');
-          setTimeout(initializePlayer, 100);
-        };
-        document.head.appendChild(script);
-      }
-
-      // Fallback: try to initialize periodically (but with limits)
-      const retryInterval = setInterval(() => {
-        if (playerInitialized || retryCount >= maxRetries) {
-          clearInterval(retryInterval);
-          return;
-        }
-        initializePlayer();
-      }, 2000);
     </script>
+    <script
+      async
+      src="https://player.kinescope.dev/v2.168.2/iframe.player.js"
+    ></script>
+  </head>
+  <body>
+    <div id="player"></div>
   </body>
 </html>
