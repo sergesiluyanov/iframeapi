@@ -2,35 +2,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Player with Downloads</title>
+    <title>Player</title>
     <link
       rel="shortcut icon"
       href="https://static.tildacdn.com/tild6535-3931-4534-a462-643438616464/favicon.ico"
       type="image/x-icon"
     />
     <script>
-      // Helper function to create mutable objects to avoid read-only property errors
-      function createMutableObject(obj) {
-        if (Array.isArray(obj)) {
-          return obj.map(item => createMutableObject(item));
-        } else if (obj && typeof obj === 'object') {
-          const newObj = {};
-          for (const key in obj) {
-            if (obj.hasOwnProperty(key)) {
-              newObj[key] = createMutableObject(obj[key]);
-            }
-          }
-          return newObj;
-        }
-        return obj;
-      }
-
       function createPlayer() {
         const Player = Kinescope.IframePlayer;
-        
-        // Base player configuration
-        const baseConfig = {
-          url: 'https://kinescope.dev/n6A9nCxamM4UVFPCjFjW8s',
+        return Player.create('player', {
+          url: 'https://kinescope.io/200633204',
 
           size: { width: '50%', height: 400 },
 
@@ -48,69 +30,8 @@
             //   interval: 2000,
             // },
           },
-        };
-
-        // Create a mutable copy of the config
-        const playerConfig = createMutableObject(baseConfig);
-        
-        // Add downloads configuration to playlist
-        playerConfig.playlist = [{
-          downloads: {
-            list: [
-              {
-                name: 'video',
-                items: [
-                  {
-                    name: '360.mp4',
-                    url: 'https://kinescope.dev/ikTNV5Pf6tA5BqmdeVUcUL/download/360.mp4',
-                    size: 12345678,
-                  },
-                  {
-                    name: '480.mp4',
-                    url: 'https://kinescope.dev/ikTNV5Pf6tA5BqmdeVUcUL/download/480.mp4',
-                    size: 23456789,
-                  },
-                  {
-                    name: '720.mp4',
-                    url: 'https://msk-11-storage.kinescope.io/mp4/73746f72-016d-312d-0b03-7b4f86239847/73746f72-016d-312d-0b08-7b4f88016ece?filename=ggkgkgku_(2025.09.16_13:31)-720p.mp4',
-                    size: 34567890,
-                  },
-                ],
-              },
-              {
-                name: 'transcription',
-                items: [
-                  {
-                    name: 'subtitles.srt',
-                    url: 'https://kinescope.dev/ikTNV5Pf6tA5BqmdeVUcUL/subtitles/1758019505/012fab76-17a6-4dc3-9b98-f4186c8279a5.vtt?download=1&filename=subtitle_English.vtt',
-                  },
-                  {
-                    name: 'subtitles.vtt',
-                    url: 'https://kinescope.dev/ikTNV5Pf6tA5BqmdeVUcUL/subtitles/1758019505/012fab76-17a6-4dc3-9b98-f4186c8279a5.vtt?download=1&filename=subtitle_English.vtt',
-                  },
-                ],
-              },
-            ],
-          },
-        }];
-
-        console.log('Player config with downloads:', playerConfig);
-        
-        return Player.create('player', playerConfig).then((player) => {
-          console.log('player initialized with downloads');
-
-          // Listen for downloads events (if supported by player)
-          player.on('downloadStart', (event) => {
-            console.log('Download started:', event);
-          });
-
-          player.on('downloadComplete', (event) => {
-            console.log('Download completed:', event);
-          });
-
-          player.on('downloadError', (event) => {
-            console.error('Download error:', event);
-          });
+        }).then((player) => {
+          console.log('player initialized');
 
           // player.on(Player.PlayerEvent.FullscreenChange, ({ data }) => {
           //   if (!data.isFullscreen) return;
@@ -127,8 +48,6 @@
           //     await createPlayer();
           //   }, 5000);
           // });
-        }).catch((error) => {
-          console.error('Error creating player:', error);
         });
       }
 
@@ -139,7 +58,7 @@
     </script>
     <script
       async
-      src="https://player.kinescope.dev/v2.168.4/iframe.player.js"
+      src="https://player.kinescope.io/latest/iframe.player.js"
     ></script>
   </head>
   <body>
