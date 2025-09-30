@@ -45,6 +45,7 @@
 
         console.log('Player config:', playerConfig);
         console.log('DRM config:', playerConfig.playlist[0].drm);
+        console.log('DRM path check:', playerConfig.playlist[0].drm?.widevine?.detectRobustness);
         
         return Player.create('player', playerConfig).then((player) => {
           console.log('player initialized with downloads');
@@ -90,7 +91,7 @@
     </script>
     <script
       async
-      src="https://player.kinescope.dev/v2.168.6/iframe.player.js?v=20250930"
+      src="https://player.kinescope.dev/v2.168.6/iframe.player.js?v=20250930-2"
     ></script>
   </head>
   <body>
