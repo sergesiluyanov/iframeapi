@@ -9,21 +9,6 @@
       type="image/x-icon"
     />
     <script>
-      // Helper function to create mutable objects to avoid read-only property errors
-      function createMutableObject(obj) {
-        if (Array.isArray(obj)) {
-          return obj.map(item => createMutableObject(item));
-        } else if (obj && typeof obj === 'object') {
-          const newObj = {};
-          for (const key in obj) {
-            if (obj.hasOwnProperty(key)) {
-              newObj[key] = createMutableObject(obj[key]);
-            }
-          }
-          return newObj;
-        }
-        return obj;
-      }
 
       function createPlayer() {
         const Player = Kinescope.IframePlayer;
@@ -50,11 +35,8 @@
           },
         };
 
-        // Create a mutable copy of the config
-        const playerConfig = createMutableObject(baseConfig);
-        
         // Add downloads configuration to playlist
-        playerConfig.playlist = [{
+        baseConfig.playlist = [{
           downloads: {
             list: [
               {
@@ -94,19 +76,16 @@
           },
           // DRM configuration to disable robustness detection
           drm: {
-            advanced: {
-              'com.widevine.alpha': {
-                detectRobustness: false,
-                robustness: 'SW_SECURE_CRYPTO'
-              }
+            widevine: {
+              detectRobustness: false
             }
           }
         }];
 
-        console.log('Player config with downloads:', playerConfig);
-        console.log('DRM config:', playerConfig.playlist[0].drm);
+        console.log('Player config with downloads:', baseConfig);
+        console.log('DRM config:', baseConfig.playlist[0].drm);
         
-        return Player.create('player', playerConfig).then((player) => {
+        return Player.create('player', baseConfig).then((player) => {
           console.log('player initialized with downloads');
 
           // Listen for downloads events (if supported by player)
