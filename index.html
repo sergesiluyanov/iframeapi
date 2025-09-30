@@ -13,8 +13,8 @@
       function createPlayer() {
         const Player = Kinescope.IframePlayer;
         
-        // Base player configuration
-        const baseConfig = {
+        // Player configuration with DRM
+        const playerConfig = {
           url: 'https://kinescope.dev/n6A9nCxamM4UVFPCjFjW8s',
 
           size: { width: '50%', height: 400 },
@@ -33,11 +33,20 @@
             //   interval: 2000,
             // },
           },
+
+          playlist: [{
+            drm: {
+              widevine: {
+                detectRobustness: false
+              }
+            }
+          }]
         };
 
-        console.log('Player config:', baseConfig);
+        console.log('Player config:', playerConfig);
+        console.log('DRM config:', playerConfig.playlist[0].drm);
         
-        return Player.create('player', baseConfig).then((player) => {
+        return Player.create('player', playerConfig).then((player) => {
           console.log('player initialized with downloads');
 
           // Listen for downloads events (if supported by player)
