@@ -47,24 +47,6 @@
             // metrics: {
             //   interval: 2000,
             // },
-            drm: {
-              advanced: {
-                'com.widevine.alpha': {
-                  detectRobustness: false,
-                  robustness: 'SW_SECURE_CRYPTO'
-                }
-              }
-            },
-          },
-
-          // DRM configuration to disable robustness detection
-          drm: {
-            advanced: {
-              'com.widevine.alpha': {
-                detectRobustness: false,
-                robustness: 'SW_SECURE_CRYPTO'
-              }
-            }
           },
         };
 
@@ -73,7 +55,6 @@
         
         // Add downloads configuration to playlist
         playerConfig.playlist = [{
-          url: 'https://kinescope.dev/n6A9nCxamM4UVFPCjFjW8s',
           downloads: {
             list: [
               {
