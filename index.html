@@ -73,6 +73,7 @@
         
         // Add downloads configuration to playlist
         playerConfig.playlist = [{
+          url: 'https://kinescope.dev/n6A9nCxamM4UVFPCjFjW8s',
           downloads: {
             list: [
               {
@@ -122,6 +123,7 @@
         }];
 
         console.log('Player config with downloads:', playerConfig);
+        console.log('DRM config:', playerConfig.playlist[0].drm);
         
         return Player.create('player', playerConfig).then((player) => {
           console.log('player initialized with downloads');
