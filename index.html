@@ -92,6 +92,12 @@
               },
             ],
           },
+          // DRM configuration to disable robustness detection
+          drm: {
+            widevine: {
+              detectRobustness: false
+            }
+          }
         }];
 
         console.log('Player config with downloads:', playerConfig);
