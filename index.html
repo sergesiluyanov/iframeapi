@@ -35,55 +35,15 @@
           },
         };
 
-        // Add downloads configuration to playlist
-        baseConfig.playlist = [{
-          downloads: {
-            list: [
-              {
-                name: 'video',
-                items: [
-                  {
-                    name: '360.mp4',
-                    url: 'https://kinescope.dev/ikTNV5Pf6tA5BqmdeVUcUL/download/360.mp4',
-                    size: 12345678,
-                  },
-                  {
-                    name: '480.mp4',
-                    url: 'https://kinescope.dev/ikTNV5Pf6tA5BqmdeVUcUL/download/480.mp4',
-                    size: 23456789,
-                  },
-                  {
-                    name: '720.mp4',
-                    url: 'https://msk-11-storage.kinescope.io/mp4/73746f72-016d-312d-0b03-7b4f86239847/73746f72-016d-312d-0b08-7b4f88016ece?filename=ggkgkgku_(2025.09.16_13:31)-720p.mp4',
-                    size: 34567890,
-                  },
-                ],
-              },
-              {
-                name: 'transcription',
-                items: [
-                  {
-                    name: 'subtitles.srt',
-                    url: 'https://kinescope.dev/ikTNV5Pf6tA5BqmdeVUcUL/subtitles/1758019505/012fab76-17a6-4dc3-9b98-f4186c8279a5.vtt?download=1&filename=subtitle_English.vtt',
-                  },
-                  {
-                    name: 'subtitles.vtt',
-                    url: 'https://kinescope.dev/ikTNV5Pf6tA5BqmdeVUcUL/subtitles/1758019505/012fab76-17a6-4dc3-9b98-f4186c8279a5.vtt?download=1&filename=subtitle_English.vtt',
-                  },
-                ],
-              },
-            ],
-          },
-          // DRM configuration to disable robustness detection
-          drm: {
-            widevine: {
-              detectRobustness: false
-            }
+        // Add DRM configuration directly to base config
+        baseConfig.drm = {
+          widevine: {
+            detectRobustness: false
           }
-        }];
+        };
 
-        console.log('Player config with downloads:', baseConfig);
-        console.log('DRM config:', baseConfig.playlist[0].drm);
+        console.log('Player config:', baseConfig);
+        console.log('DRM config:', baseConfig.drm);
         
         return Player.create('player', baseConfig).then((player) => {
           console.log('player initialized with downloads');
