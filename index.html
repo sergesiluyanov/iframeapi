@@ -140,12 +140,13 @@
 
       function onKinescopeIframeAPIReady(Player) {
         console.log('iframe api ready', Player);
+        console.log('Player version:', Player.version || 'version not available');
         createPlayer();
       }
     </script>
     <script
       async
-      src="https://player.kinescope.dev/v2.168.6/iframe.player.js"
+      src="https://player.kinescope.dev/v2.168.6/iframe.player.js?v=20250930"
     ></script>
   </head>
   <body>
