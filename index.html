@@ -94,9 +94,11 @@
           },
           // DRM configuration to disable robustness detection
           drm: {
-            widevine: {
-              detectRobustness: false,
-              robustness: 'SW_SECURE_CRYPTO'
+            advanced: {
+              'com.widevine.alpha': {
+                detectRobustness: false,
+                robustness: 'SW_SECURE_CRYPTO'
+              }
             }
           }
         }];
