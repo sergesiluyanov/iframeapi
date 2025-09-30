@@ -47,6 +47,24 @@
             // metrics: {
             //   interval: 2000,
             // },
+            drm: {
+              advanced: {
+                'com.widevine.alpha': {
+                  detectRobustness: false,
+                  robustness: 'SW_SECURE_CRYPTO'
+                }
+              }
+            },
+          },
+
+          // DRM configuration to disable robustness detection
+          drm: {
+            advanced: {
+              'com.widevine.alpha': {
+                detectRobustness: false,
+                robustness: 'SW_SECURE_CRYPTO'
+              }
+            }
           },
         };
 
