@@ -2,68 +2,44 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Player with Downloads</title>
+    <title>Player</title>
     <link
       rel="shortcut icon"
       href="https://static.tildacdn.com/tild6535-3931-4534-a462-643438616464/favicon.ico"
       type="image/x-icon"
     />
     <script>
+        function createPlayer() {
+          const Player = Kinescope.IframePlayer;
+          return Player.create('player', {
+            url: 'https://kinescope.dev/ezngqBcdNvjpycVn9a4SMB',
 
-      function createPlayer() {
-        const Player = Kinescope.IframePlayer;
-        
-        // Player configuration with DRM
-        const playerConfig = {
-          url: 'https://kinescope.dev/ezngqBcdNvjpycVn9a4SMB',
+            size: { width: '50%', height: 400 },
 
-          size: { width: '50%', height: 400 },
+            behaviour: {
+              // preload: true,
+              // autoPlay: true,
+              // crossOrigin: 'use-credentials',
+            },
 
-          behaviour: {
-            // preload: true,
-            // autoPlay: true,
-            // crossOrigin: 'use-credentials',
-          },
+            settings: {
+              // driverSettings: {
+              //   hls: { playback: 'native' },
+              // },
+              // metrics: {
+              //   interval: 2000,
+              // },
+            },
 
-          settings: {
-            // driverSettings: {
-            //   hls: { playback: 'native' },
-            // },
-            // metrics: {
-            //   interval: 2000,
-            // },
-          },
-
-          playlist: [{
-            drm: {
-              advanced: {
-                'com.widevine.alpha': {
+            playlist: [{
+              drm: {
+                widevine: {
                   detectRobustness: false
                 }
               }
-            }
-          }]
-        };
-
-        console.log('Player config:', playerConfig);
-        console.log('DRM config:', playerConfig.playlist[0].drm);
-        console.log('DRM path check:', playerConfig.playlist[0].drm?.widevine?.detectRobustness);
-        
-        return Player.create('player', playerConfig).then((player) => {
-          console.log('player initialized with downloads');
-
-          // Listen for downloads events (if supported by player)
-          player.on('downloadStart', (event) => {
-            console.log('Download started:', event);
-          });
-
-          player.on('downloadComplete', (event) => {
-            console.log('Download completed:', event);
-          });
-
-          player.on('downloadError', (event) => {
-            console.error('Download error:', event);
-          });
+            }]
+          }).then((player) => {
+          console.log('player initialized');
 
           // player.on(Player.PlayerEvent.FullscreenChange, ({ data }) => {
           //   if (!data.isFullscreen) return;
@@ -80,20 +56,17 @@
           //     await createPlayer();
           //   }, 5000);
           // });
-        }).catch((error) => {
-          console.error('Error creating player:', error);
         });
       }
 
       function onKinescopeIframeAPIReady(Player) {
         console.log('iframe api ready', Player);
-        console.log('Player version:', Player.version || 'version not available');
         createPlayer();
       }
     </script>
     <script
       async
-      src="https://player.kinescope.dev/v2.168.6/iframe.player.js?v=20250930-2"
+      src="https://player.kinescope.dev/v2.168.7/iframe.player.js"
     ></script>
   </head>
   <body>
