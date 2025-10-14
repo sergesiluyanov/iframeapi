@@ -74,15 +74,19 @@
     <div style="display: flex; gap: 20px; padding: 20px;">
       <div id="player" style="flex: 1;"></div>
       <div style="flex: 1;">
+        <h3 style="margin: 0 0 10px 0; color: #333;">Чат трансляции</h3>
         <iframe 
           src="https://kinescope.dev/chat/0ct6PqEa3wvmhd3z4UK9C5?token=eyJhbGciOiJSUzI1NiIsImtpZCI6InE5OGltUml1bDdxd0UyTVhDOWVoMTBoUWI1YlNuYnJOUzFMVXlXN094bnciLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJqd3QtdGVzdCIsImp0aSI6IjIzNDE0MzUiLCJpZCI6IjEiLCJ1c2VybmFtZSI6InVzZXIxIiwibmJmIjoxNzYwMDk0ODE4LCJleHAiOjE3NjU1NDg4MTgsImlhdCI6MTc2MDA5NDgxOCwiaXNzIjoiNTJkYWNmMmUtZmRlMC00ZDExLTkzNzItNjNhNGM5ZmE3MzhlIiwiYXVkIjoiY2hhdC1zZXJ2aWNlIn0.APhiliiKuGkrQ9_kk2yGtZA72sN97Td8YEhwFXaujM9h3NbOWBfNOjK6fHlCRyeEqOTvpoiefo4CRPTyk9zwEEKVLiuGfREpm-MtRYk8dvRmHEUi-l-MY582BHqUPjTsUrYN_xTDdimLzUSTW_HbA7X4JIxuwH9sH6Pb5GD7f0iK-6jltcZOTF6cGZLsglA8VDyI78Vb55tWoTxPR6-eXOZ9EGXO9oPZz7REQVE0N2slJumJwEfg_zK2Ap7PD9EetI06L0OGNiKrznDcJHl2EKwOXmzRfr9FLwWM0YJpE_4bRLmTSgSOhTnlN9nIr4r6bQkSFLC1pwJIavnPcsxuKQ" 
-          allow="fullscreen" 
           frameborder="0" 
-          allowfullscreen 
           width="100%" 
           height="400"
-          style="border-radius: 8px;">
+          style="border-radius: 8px; border: 2px solid #ccc; background-color: #f5f5f5;"
+          onload="console.log('Chat iframe loaded successfully')"
+          onerror="console.error('Chat iframe failed to load')">
         </iframe>
+        <p style="font-size: 12px; color: #666; margin: 5px 0 0 0;">
+          Если чат не загружается, проверьте консоль браузера (F12) на наличие ошибок
+        </p>
       </div>
     </div>
   </body>
