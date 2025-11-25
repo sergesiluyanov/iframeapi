@@ -13,15 +13,12 @@
           const Player = Kinescope.IframePlayer;
           return Player.create('player', {
             url: 'https://kinescope.dev/0cutrgiKsfugHNMvVBgBVf',
-
             size: { width: '100%', height: 400 },
-
             behaviour: {
               // preload: true,
               // autoPlay: true,
               // crossOrigin: 'use-credentials',
             },
-
             settings: {
               // driverSettings: {
               //   hls: { playback: 'native' },
@@ -30,30 +27,31 @@
               //   interval: 2000,
               // },
             },
-
+            ui: {
+              liveLabel: true
+            },
             playlist: [{
               drm: {
                 widevine: {
                   detectRobustness: false
                 }
               },
-              liveSync: true
+              liveSync: true,
+              dataPolling: {
+                url: 'https://kinescope.dev/0cutrgiKsfugHNMvVBgBVf'
+              }
             }]
           }).then((player) => {
           console.log('player initialized');
-
           // player.on(Player.PlayerEvent.FullscreenChange, ({ data }) => {
           //   if (!data.isFullscreen) return;
-
           //   setTimeout(async () => {
           //     await player.destroy();
-
           //     if (!document.getElementById('player')) {
           //       const container = document.createElement('div');
           //       container.id = 'player';
           //       document.body.appendChild(container);
           //     }
-
           //     await createPlayer();
           //   }, 5000);
           // });
@@ -91,3 +89,4 @@
     </div>
   </body>
 </html>
+
