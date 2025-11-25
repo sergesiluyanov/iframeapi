@@ -12,7 +12,7 @@
         function createPlayer() {
           const Player = Kinescope.IframePlayer;
           return Player.create('player', {
-            url: 'https://kinescope.dev/0cutVSxoJ6WoHYASx1d55L',
+            url: 'https://kinescope.io/0cutX8YE2UVFXVJzy7dBwL',
             size: { width: '100%', height: 400 },
             behaviour: {
               // preload: true,
@@ -36,11 +36,11 @@
                   detectRobustness: false
                 }
               },
-              liveSync: true
-            }],
-            dataPolling: {
-              url: 'https://kinescope.dev/0cutVSxoJ6WoHYASx1d55L'
-            }
+              liveSync: true,
+              dataPolling: {
+                url: 'https://kinescope.io/0cutX8YE2UVFXVJzy7dBwL'
+              }
+            }]
           }).then((player) => {
           console.log('player initialized');
           // player.on(Player.PlayerEvent.FullscreenChange, ({ data }) => {
@@ -74,7 +74,7 @@
       <div>
         <h3 style="margin: 0 0 10px 0; color: #333;">Чат трансляции</h3>
         <iframe 
-          src="https://kinescope.dev/chat/0cutVSxoJ6WoHYASx1d55L"
+          src="https://kinescope.io/chat/0cutX8YE2UVFXVJzy7dBwL" 
           frameborder="0" 
           width="100%" 
           height="400"
