@@ -65,12 +65,27 @@
     </script>
     <script
       async
-      src="https://player.kinescope.io/v2.175.0/iframe.player.js"
+      src="https://player.kinescope.io/v2.175.1/iframe.player.js"
     ></script>
   </head>
   <body>
     <div style="padding: 20px;">
       <div id="player" style="margin-bottom: 20px;"></div>
+      <div>
+        <h3 style="margin: 0 0 10px 0; color: #333;">Чат трансляции</h3>
+        <iframe 
+          src="https://kinescope.io/chat/0cuvthG4Ucsqthc9pVDAqU" 
+          frameborder="0" 
+          width="100%" 
+          height="400"
+          style="border-radius: 8px; border: 2px solid #ccc; background-color: #f5f5f5;"
+          onload="console.log('Chat iframe loaded successfully')"
+          onerror="console.error('Chat iframe failed to load')">
+        </iframe>
+        <p style="font-size: 12px; color: #666; margin: 5px 0 0 0;">
+          Если чат не загружается, проверьте консоль браузера (F12) на наличие ошибок
+        </p>
+      </div>
     </div>
   </body>
 </html>
