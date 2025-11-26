@@ -39,7 +39,18 @@
             liveSync: true,
             dataPolling: {
               url: 'https://kinescope.io/0cuvthG4Ucsqthc9pVDAqU/player-events.json'
-            }
+            },
+            cta: [{
+              id: '04',
+              type: 'banner',
+              title: 'Title',
+              description: 'Description',
+              position: 'bottom-left',
+              variant: 'vertical',
+              trigger: { timePoints: [0] },
+              button: { text: 'Button' },
+              image: 'url'
+            }]
           }]
         }).then((player) => {
           console.log('player initialized');
