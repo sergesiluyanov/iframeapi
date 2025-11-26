@@ -9,26 +9,7 @@
       type="image/x-icon"
     />
     <script>
-      window.KinescopeIframePlayerConfig = {
-        player: {
-          ui: {
-            liveLabel: true
-          },
-          playlist: [{
-            drm: {
-              widevine: {
-                detectRobustness: false
-              }
-            },
-            liveSync: true,
-            dataPolling: {
-              url: 'https://kinescope.dev/0cuvgtz19RkjPSN8MEu7s9/player-events.json'
-            }
-          }]
-        }
-      };
-
-      function createPlayer() {
+        function createPlayer() {
         const Player = Kinescope.IframePlayer;
         return Player.create('player', {
           url: 'https://kinescope.dev/0cuvgtz19RkjPSN8MEu7s9',
@@ -58,7 +39,18 @@
             liveSync: true,
             dataPolling: {
               url: 'https://kinescope.dev/0cuvgtz19RkjPSN8MEu7s9/player-events.json'
-            }
+            },
+            cta: [{
+              id: '04',
+              type: 'banner',
+              title: 'Title',
+              description: 'Description',
+              position: 'bottom-left',
+              variant: 'vertical',
+              trigger: { timePoints: [0] },
+              button: { text: 'Button' },
+              image: 'url'
+            }]
           }]
         }).then((player) => {
           console.log('player initialized');
