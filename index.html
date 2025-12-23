@@ -1,95 +1,99 @@
-<html>
+
+
+<!DOCTYPE html>
+<html xmlns:og="http://ogp.me/ns#">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Player</title>
-    <link
-      rel="shortcut icon"
-      href="https://static.tildacdn.com/tild6535-3931-4534-a462-643438616464/favicon.ico"
-      type="image/x-icon"
-    />
-    <script>
-        function createPlayer() {
-        const Player = Kinescope.IframePlayer;
-        return Player.create('player', {
-          url: 'https://kinescope.dev/3mbzG9B4XexNUwJMSoK2EG',
-          size: { width: '100%', height: 400 },
-          behaviour: {
-            // preload: true,
-            // autoPlay: true,
-            // crossOrigin: 'use-credentials',
-          },
-          settings: {
-            // driverSettings: {
-            //   hls: { playback: 'native' },
-            // },
-            // metrics: {
-            //   interval: 2000,
-            // },
-          },
-          ui: {
-            liveLabel: true
-          },
-          playlist: [{
-            drm: {
-              widevine: {
-                detectRobustness: false
-              }
-            },
-            liveSync: true,
-            dataPolling: {
-              url: 'https://kinescope.io/0cv2E3qy1j9XBa4vttgbHb/player-events.json'
-            },
-            cta: [{
-              id: '04',
-              type: 'banner',
-              title: 'Title',
-              description: 'Description',
-              position: 'bottom-center',
-              variant: 'horizontal',
-              trigger: { timePoints: [0] },
-              button: { text: 'Press here', url: 'https://www.youtube.com/' }
-            }]
-          }]
-        }).then((player) => {
-          console.log('player initialized');
-          // player.on(Player.PlayerEvent.FullscreenChange, ({ data }) => {
-          //   if (!data.isFullscreen) return;
-          //   setTimeout(async () => {
-          //     await player.destroy();
-          //     if (!document.getElementById('player')) {
-          //       const container = document.createElement('div');
-          //       container.id = 'player';
-          //       document.body.appendChild(container);
-          //     }
-          //     await createPlayer();
-          //   }, 5000);
-          // });
-        });
-      }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="color-scheme" content="inherit">
+    <title>[Edit of] STARBLASTER+___+3am+Funk+Dance+Party-original-original</title>
+    <meta name="description" content="Смотрите «[Edit of] STARBLASTER+___+3am+Funk+Dance+Party-original-original» на видеоплатформе Кинескоп" />
 
-      function onKinescopeIframeAPIReady(Player) {
-        console.log('iframe api ready', Player);
-        createPlayer();
-      }
+    <meta name="twitter:card" content="player" />
+    <meta name="twitter:image" content="https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/posters/d8cd08b6-93d8-438c-821a-36567cadaf25/poster_lg/019b4a6b-1b58-7203-9adc-0d58e2dbec1a.jpg" />
+    <meta name="twitter:url" content="https://kinescope.dev/embed/1303ac66-0073-4536-9e61-7cc94a808b80" />
+    <meta name="twitter:description" content="Смотрите «[Edit of] STARBLASTER+___+3am+Funk+Dance+Party-original-original» на видеоплатформе Кинескоп" />
+    <meta name="twitter:url" content="https://kinescope.dev/embed/1303ac66-0073-4536-9e61-7cc94a808b80" />
+    <meta name="twitter:player" content="https://kinescope.dev/embed/1303ac66-0073-4536-9e61-7cc94a808b80" />
+    <meta name="twitter:player:width" content="1920" />
+    <meta name="twitter:player:height" content="1080" />
+    <meta name="twitter:site" content="@kinescopeupdates" />
+
+
+    <meta property="og:type" content="video.other" />
+    <meta property="og:title" content="[Edit of] STARBLASTER+___+3am+Funk+Dance+Party-original-original" />
+    <meta property="og:description" content="Смотрите «[Edit of] STARBLASTER+___+3am+Funk+Dance+Party-original-original» на видеоплатформе Кинескоп" />
+    <meta property="og:url" content="https://kinescope.dev/embed/1303ac66-0073-4536-9e61-7cc94a808b80" />
+    <meta property="og:image" content="https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/posters/d8cd08b6-93d8-438c-821a-36567cadaf25/poster_lg/019b4a6b-1b58-7203-9adc-0d58e2dbec1a.jpg" />
+    <meta property="og:video" content="https://kinescope.dev/embed/1303ac66-0073-4536-9e61-7cc94a808b80" />
+    <meta property="og:video:type" content="text/html">
+    <meta property="og:video:url" content="https://kinescope.dev/embed/1303ac66-0073-4536-9e61-7cc94a808b80" />
+    <meta property="og:video:secure_url" content="https://kinescope.dev/embed/1303ac66-0073-4536-9e61-7cc94a808b80" />
+    <meta property="og:video:iframe" content="https://kinescope.dev/embed/1303ac66-0073-4536-9e61-7cc94a808b80" />
+    <meta property="og:video:duration" content="1138" />
+    <meta property="og:video:release_date" content="2025-12-23T08:46:57+00:00" />
+    <meta property="og:video:width" content="1920">
+    <meta property="og:video:height" content="1080">
+    <meta property="og:site_name" content="Kinescope">
+
+    
+
+
+
+    <link rel="preconnect" href="https://kinescope.dev" />
+    <link rel="preconnect" href="https://edge.kinescope.dev" />
+    <link rel="iframely" href="https://kinescope.dev/embed/1303ac66-0073-4536-9e61-7cc94a808b80" media="(aspect-ratio: 1920/1080)" />
+    <link rel="alternate" type="application/json+oembed" href="https://kinescope.dev/oembed?url=https%3A%2F%2Fkinescope.dev%2Fembed%2F1303ac66-0073-4536-9e61-7cc94a808b80&format=json" title="[Edit of] STARBLASTER+___+3am+Funk+Dance+Party-original-original oEmbed" />
+    <link rel="alternate" type="text/xml+oembed" href="https://kinescope.dev/oembed?url=https%3A%2F%2Fkinescope.dev%2Fembed%2F1303ac66-0073-4536-9e61-7cc94a808b80&format=xml" title="[Edit of] STARBLASTER+___+3am+Funk+Dance+Party-original-original oEmbed" />
+    <script type="module" defer src="https://preview.kinescope.dev/v0.0.86/kinescope-page-play.js"></script>
+    <link href="https://preview.kinescope.dev/v0.0.86/kinescope-page-play.css" media="all" rel="stylesheet" />
+    <style>
+      .noscript-warning{width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;position:fixed;top:0;left:0;background-color:rgba(34,34,34,0.64);font-family:Roboto,sans-serif;line-height:1.15;text-size-adjust:100%;-webkit-tap-highlight-color:transparent;color:rgb(255,255,255);font-size:1em;font-weight:500}.noscript-warning div{text-align:center}.noscript-warning code{font-size:1.2em}
+    </style>
+    <script>
+    
+
+var playerOptions = {"playlist":[{"sources":{"hls":{"segments":"fmp4","selector":{"params":{"audio":"lang","quality":"quality"},"qualityMap":{"1080":"1080p","480":"480p","720":"720p"}},"src":"https://kinescope.dev/1303ac66-0073-4536-9e61-7cc94a808b80/master.m3u8?expires=1766569637\u0026token="},"shakahls":{"src":"https://kinescope.dev/1303ac66-0073-4536-9e61-7cc94a808b80/master.m3u8?expires=1766569637\u0026token="}},"id":"1303ac66-0073-4536-9e61-7cc94a808b80","title":"[Edit of] STARBLASTER+___+3am+Funk+Dance+Party-original-original","poster":{"src":{"src":"https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/posters/d8cd08b6-93d8-438c-821a-36567cadaf25/poster_sm/019b4a6b-1b58-7203-9adc-0d58e2dbec1a.jpg","srcset":[{"type":"image/webp","src":"https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/posters/d8cd08b6-93d8-438c-821a-36567cadaf25/poster_xs/019b4a6b-1b58-7203-9adc-0d58e2dbec1a.webp","media":"(orientation: landscape) and (max-height: 90px), (orientation: portrait) and (max-width: 90px)"},{"type":"image/webp","src":"https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/posters/d8cd08b6-93d8-438c-821a-36567cadaf25/poster_md/019b4a6b-1b58-7203-9adc-0d58e2dbec1a.webp","media":"(orientation: landscape) and (max-height: 480px), (orientation: portrait) and (max-width: 320px)"},{"type":"image/webp","src":"https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/posters/d8cd08b6-93d8-438c-821a-36567cadaf25/poster_md/019b4a6b-1b58-7203-9adc-0d58e2dbec1a.webp","media":"(orientation: landscape) and (max-height: 960px), (orientation: portrait) and (max-width: 480px)"},{"type":"image/webp","src":"https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/posters/d8cd08b6-93d8-438c-821a-36567cadaf25/poster_lg/019b4a6b-1b58-7203-9adc-0d58e2dbec1a.webp","media":"(orientation: landscape) and (min-height: 960.1px), (orientation: portrait) and (min-width: 480.1px)"},{"type":"image/jpeg","src":"https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/posters/d8cd08b6-93d8-438c-821a-36567cadaf25/poster_xs/019b4a6b-1b58-7203-9adc-0d58e2dbec1a.jpg","media":"(orientation: landscape) and (max-height: 90px), (orientation: portrait) and (max-width: 90px)"},{"type":"image/jpeg","src":"https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/posters/d8cd08b6-93d8-438c-821a-36567cadaf25/poster_md/019b4a6b-1b58-7203-9adc-0d58e2dbec1a.jpg","media":"(orientation: landscape) and (max-height: 480px), (orientation: portrait) and (max-width: 320px)"},{"type":"image/jpeg","src":"https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/posters/d8cd08b6-93d8-438c-821a-36567cadaf25/poster_md/019b4a6b-1b58-7203-9adc-0d58e2dbec1a.jpg","media":"(orientation: landscape) and (max-height: 960px), (orientation: portrait) and (max-width: 480px)"},{"type":"image/jpeg","src":"https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/posters/d8cd08b6-93d8-438c-821a-36567cadaf25/poster_lg/019b4a6b-1b58-7203-9adc-0d58e2dbec1a.jpg","media":"(orientation: landscape) and (min-height: 960.1px), (orientation: portrait) and (min-width: 480.1px)"}]}},"storyboard":{"frameSize":{"width":240,"height":135},"frameDuration":11.38,"l1":{"template":"https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/storyboards/d8cd08b6-93d8-438c-821a-36567cadaf25/019b4a6d-83c2-74a5-8ec0-56453d32cba9.jpg?i={INDEX}","rows":10,"cols":10},"l2":{"template":"https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/storyboards/d8cd08b6-93d8-438c-821a-36567cadaf25/019b4a6d-83c2-74a5-8ec0-56453d32cba9.jpg?i={INDEX}","rows":10,"cols":10}},"qualityLabels":{"1080":{"label":"1080p","q":1080},"480":{"label":"480p","q":480},"720":{"label":"720p","q":720}},"frameRate":{"1080":23.98,"480":23.98,"720":23.98},"annotations":[{"end":2,"image":"","start":0,"url":""}],"meta":{"folderId":"5e1dc878-6b90-40ae-89fc-39e96801f1b0","projectId":"5e1dc878-6b90-40ae-89fc-39e96801f1b0","workspaceId":"de00b8cf-a5d1-4675-a0f5-663087f96b5d","type":"vod","duration":"1137.637"},"dataPolling":{}}],"behaviour":{"localStorage":{"storage":"local"},"endscreen":"replay","preload":false,"textTrack":true,"notifications":{"goToStart":false}},"size":{"width":"100%","height":"100%"},"ui":{"playbackRateButton":true,"title":false,"chromecastButton":true,"airplayButton":true,"annotationsButton":true,"subtitlesSearch":true,"subtitlesButton":true,"scaleFactors":false,"initial":{"controlBar":false,"title":false}},"theme":{},"settings":{"metrics":{"url":"https://player-metrics.kinescope.dev/v1/batch","compressedUrl":"https://player-metrics.kinescope.dev/v1/batch/gzip","interval":60000,"timestamp":1766483237,"logUrl":"https://player-metrics.kinescope.dev/v1/logs"},"oldmetrics":{"url":"https://metrics.kinescope.dev/player","errors":{"url":"https://player-errors.kinescope.dev/v1/errors"}},"preferManagedMediaSource":false,"driverSettings":{}}};
+
+function  onPlayApiReady(playApi){
+  playApi.create({
+    player: "https://player.kinescope.dev/v2.175.5/player.js",
+    playerContainerId: 'player_1303ac66-0073-4536-9e61-7cc94a808b80',
+    container: 'root',
+    playerOptions: playerOptions,
+    aspectRatio: 1920/1080,
+    isPrivate: false,
+    isLimited: false,
+    playlistName: "",
+  })
+}
+
+
     </script>
-    <script
-      async
-      src="https://player.kinescope.dev/v2.175.5/iframe.player.js"
-    ></script>
   </head>
   <body>
-    <div style="padding: 20px;">
-      <div id="player" style="margin-bottom: 20px;"></div>
-      <div>
-        <h3 style="margin: 0 0 10px 0; color: #333;">Чат трансляции</h3>
-        <iframe 
-        </iframe>
-        <p style="font-size: 12px; color: #666; margin: 5px 0 0 0;">
-          Если чат не загружается, проверьте консоль браузера (F12) на наличие ошибок
-        </p>
+    <noscript>
+      <div class="noscript-warning">
+        <div>
+      JavaScript отключен или страница загружена в <code>iframe</code> <br/> с ограничением <code>sandbox</code> без <code>allow-scripts</code>.
+        </div>
       </div>
-    </div>
-  </body>
-</html>
+    </noscript>
 
+    <div id="root"></div>
+  </body>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "[Edit of] STARBLASTER+___+3am+Funk+Dance+Party-original-original",
+      "description": "Смотрите «[Edit of] STARBLASTER+___+3am+Funk+Dance+Party-original-original» на видеоплатформе Кинескоп",
+      "thumbnailUrl": "https://edge.kinescope.dev/de00b8cf-a5d1-4675-a0f5-663087f96b5d/posters/d8cd08b6-93d8-438c-821a-36567cadaf25/poster_lg/019b4a6b-1b58-7203-9adc-0d58e2dbec1a.jpg",
+      "uploadDate": "2025-12-23T08:46:57+00:00",
+      "duration": "PT18M57S",
+      "contentUrl": "https://kinescope.dev/1303ac66-0073-4536-9e61-7cc94a808b80/master.m3u8?expires=1766569637&amp;token=",
+      "transcript": "",
+      "embedUrl": "https://kinescope.dev/embed/1303ac66-0073-4536-9e61-7cc94a808b80"
+    }
+  </script>
+</html>
