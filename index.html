@@ -53,18 +53,6 @@
           }]
         }).then((player) => {
           console.log('player initialized');
-          // player.on(Player.PlayerEvent.FullscreenChange, ({ data }) => {
-          //   if (!data.isFullscreen) return;
-          //   setTimeout(async () => {
-          //     await player.destroy();
-          //     if (!document.getElementById('player')) {
-          //       const container = document.createElement('div');
-          //       container.id = 'player';
-          //       document.body.appendChild(container);
-          //     }
-          //     await createPlayer();
-          //   }, 5000);
-          // });
         });
       }
 
@@ -80,15 +68,7 @@
   </head>
   <body>
     <div style="padding: 20px;">
-      <div id="player" style="margin-bottom: 20px;"></div>
-      <div>
-        <h3 style="margin: 0 0 10px 0; color: #333;">Чат трансляции</h3>
-        <iframe 
-        </iframe>
-        <p style="font-size: 12px; color: #666; margin: 5px 0 0 0;">
-          Если чат не загружается, проверьте консоль браузера (F12) на наличие ошибок
-        </p>
-      </div>
+      <div id="player"></div>
     </div>
   </body>
 </html>
