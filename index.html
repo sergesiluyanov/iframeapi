@@ -1,74 +1,73 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Player</title>
-    <link
-      rel="shortcut icon"
-      href="https://static.tildacdn.com/tild6535-3931-4534-a462-643438616464/favicon.ico"
-      type="image/x-icon"
-    />
-    <script>
-        function createPlayer() {
-        const Player = Kinescope.IframePlayer;
-        return Player.create('player', {
-          url: 'https://kinescope.dev/pl/7x9CweRisf6cpJAHjn1hpV',
-          size: { width: '100%', height: 400 },
-          behaviour: {
-            // preload: true,
-            // autoPlay: true,
-            // crossOrigin: 'use-credentials',
-          },
-          settings: {
-            // driverSettings: {
-            //   hls: { playback: 'native' },
-            // },
-            // metrics: {
-            //   interval: 2000,
-            // },
-          },
-          ui: {
-            liveLabel: true
-          },
-          playlist: [{
-            drm: {
-              widevine: {
-                detectRobustness: false
-              }
-            },
-            liveSync: true,
-            dataPolling: {
-              url: 'https://kinescope.io/0cv2E3qy1j9XBa4vttgbHb/player-events.json'
-            },
-            cta: [{
-              id: '04',
-              type: 'banner',
-              title: 'Title',
-              description: 'Description',
-              position: 'bottom-center',
-              variant: 'horizontal',
-              trigger: { timePoints: [0] },
-              button: { text: 'Press here', url: 'https://www.youtube.com/' }
-            }]
-          }]
-        }).then((player) => {
-          console.log('player initialized');
-        });
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kinescope Player</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
 
-      function onKinescopeIframeAPIReady(Player) {
-        console.log('iframe api ready', Player);
-        createPlayer();
+      body {
+        min-height: 100vh;
+        background: linear-gradient(
+          135deg,
+          #1a1a2e 0%,
+          #16213e 50%,
+          #0f3460 100%
+        );
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
       }
-    </script>
-    <script
-      async
-      src="https://player.kinescope.dev/v2.175.5/iframe.player.js"
-    ></script>
+
+      .player-container {
+        width: 100%;
+        max-width: 900px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      }
+
+      #player {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+      }
+    </style>
   </head>
   <body>
-    <div style="padding: 20px;">
+    <div class="player-container">
+      <!-- Плеер заменит <div> на <iframe> -->
       <div id="player"></div>
     </div>
+
+    <script>
+      // Асинхронно загружаем IFrame Player API
+      var tag = document.createElement("script");
+      tag.src = "https://player.kinescope.dev/v2.172.0/iframe.player.js";
+      var firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // Эта функция создаст <iframe> (и Kinescope Player)
+      // Она будет вызвана автоматически когда скрипт API будет загружен
+      function onKinescopeIframeAPIReady(playerFactory) {
+        playerFactory
+          .create("player", {
+            url: "https://kinescope.dev/embed/b7zYi5rEFCE1eWwVhZYmXv",
+            size: { width: "100%", height: "100%" },
+          })
+          .then(function (player) {
+            player
+              // Обработчик вызывается когда плеер загрузит необходимые данные
+              .once(player.Events.Loaded, function (event) {
+                event.target.setVolume(0.5);
+              });
+          });
+      }
+    </script>
   </body>
 </html>
